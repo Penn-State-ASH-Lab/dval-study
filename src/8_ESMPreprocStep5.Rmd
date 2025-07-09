@@ -1,23 +1,31 @@
-##"Descriptive statistics and visualization"
+---
+title: "ESM Preprocessing Step 5: Descriptives & Visualization"
+author: "DVAL Lab"
+date: "`r Sys.Date()`"
+output: html_document
+---
 
-#Load necessary packages
-```{r}
+## Overview
+
+#This file includes descriptive statistics and exploratory data visualization for the fully preprocessed ESM dataset. It loads the output from Step 4 and summarizes key variables.
+
+---
+
+```{r setup, include=FALSE}
+library(here)
 library(dplyr)
 library(tidyr)
 library(ggplot2)
+
+# Define path to the final preprocessed dataset
+file_path <- here("output", "EMA_and_baseline4.rds")
 ```
 
+# Read in data
 ```{r}
-# Load the .rds created at the end of "7_ESMPreprocStep4" file
-d <- readRDS("C:/Users/Walt/OneDrive - The Pennsylvania State University/Projects/ASH/DVAL/Users/Walter/Preprocessing/Interim data/EMA_and_baseline4.rds")
-View(d)
+d <- readRDS(file_path)
 ```
 
-#"Time series visualization"
+#Time series visualization
 
 #Continuous Time Axis
-```{r}
-
-```
-
-

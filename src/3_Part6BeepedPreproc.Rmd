@@ -1,15 +1,31 @@
-#Load necessary packages
-```{r}
+---
+title: "3_Part6Beeped Preprocessing"
+author: "DVAL Lab"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include = FALSE}
+# Load required packages
+library(here)
 library(dplyr)
 library(lubridate)
 library(janitor)
+library(skimr)
+
+# Define path to EMA Part 6 data
+part6_path <- here("data", "DVAL_EMA_part6_beeped.csv")
 ```
 
-#Import EMA data from "Part 6" of the study.
+# Import EMA data from Part 6
 ```{r}
-part6beeped <- read.csv("/Users/Walt/OneDrive - The Pennsylvania State University/Projects/ASH/DVAL/4. Derivative data/Smartphone/Organize_EMA_data/DVAL_EMA_part6_beeped.csv", 
-                        na = c("-99", "__NA__"), stringsAsFactors = FALSE)
+part6beeped <- read.csv(
+  part6_path, 
+  na.strings = c("-99", "__NA__"), 
+  stringsAsFactors = FALSE
+)
 ```
+
 
 #Removal of variables with 100% missing data due to how the survey was programmed (Refer to DREAM manual.pdf for explanation): Milestone_3 - Milestone_10; Milestone_3_time - Milestone_10_time.
 ```{r}
@@ -265,7 +281,7 @@ glimpse(part6beeped_1)
 #View descriptive statistics (For each variable, examine % missing, mean, sd, frequencies by quartile, and histogram)
 skim(part6beeped_1)
 
-#Temporary until git established; Save as .rds file.
+# Save cleaned dataset to /output directory
 ```{r}
-saveRDS(part6beeped_1, "C:\\Users\\Walt\\OneDrive - The Pennsylvania State University\\Projects\\ASH\\DVAL\\Users\\Walter\\Preprocessing\\Interim Data\\part6beeped_1.rds")
+saveRDS(part6beeped, here("output", "part6beeped.rds"))
 ```

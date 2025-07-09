@@ -1,16 +1,32 @@
-# This Rmarkdown is based on the step-by-step guidelines for preprocessing ESM data provided by Revol et al., (2024) via their website: https://preprocess.esmtools.com/, and contains code from or adapted from "Step 3: Participants Response Behaviors". 
+---
+title: "ESM Preprocessing Step 3"
+author: "DVAL Lab"
+date: "`r Sys.Date()`"
+output: html_document
+---
 
-#Load necessary packages
-```{r}
+# Overview
+
+This R Markdown file is based on Revol et al. (2024), following Step 3 of their ESM preprocessing guide:  
+[https://preprocess.esmtools.com](https://preprocess.esmtools.com)  
+It focuses on describing participants’ response behaviors across the ESM period.
+
+---
+
+```{r setup, include=FALSE}
+# Load required packages
+library(here)
 library(dplyr)
 library(ggplot2)
 library(lubridate)
 library(tidyr)
+
+# Define path to previous output
+file_path <- here("output", "EMA_and_baseline2.rds")
 ```
 
-#Read in data
+# Read in the data
 ```{r}
-file_path <- "C:/Users/Walt/OneDrive - The Pennsylvania State University/Projects/ASH/DVAL/Users/Walter/Preprocessing/Interim Data/EMA_and_baseline2.rds"
 d <- readRDS(file_path)
 ```
 
@@ -211,7 +227,7 @@ d %>%
 
 #Save updates to data
 ```{r}
-saveRDS(d, "C:\\Users\\Walt\\OneDrive - The Pennsylvania State University\\Projects\\ASH\\DVAL\\Users\\Walter\\Preprocessing\\Interim Data\\EMA_and_baseline3.rds")
+saveRDS(d, here("output", "EMA_and_baseline3.rds"))
 ```
 
 #References

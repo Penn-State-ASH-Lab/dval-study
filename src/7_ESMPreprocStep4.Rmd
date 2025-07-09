@@ -1,13 +1,29 @@
-# This Rmarkdown is based on the step-by-step guidelines for preprocessing ESM data provided by Revol et al., (2024) via their website: https://preprocess.esmtools.com/, and contains code from or adapted from "Step 4: Compute and transform variables".
+---
+title: "ESM Preprocessing Step 4"
+author: "DVAL Lab"
+date: "`r Sys.Date()`"
+output: html_document
+---
 
-#Load packages
-```{r}
+# Overview
+
+This R Markdown file is based on Step 4 of the Revol et al. (2024) preprocessing pipeline:  
+[https://preprocess.esmtools.com](https://preprocess.esmtools.com)  
+It focuses on computing and transforming variables as needed for analysis.
+
+---
+
+```{r setup, include=FALSE}
+library(here)
 library(dplyr)
+
+# Define path to the Step 3 output
+file_path <- here("output", "EMA_and_baseline3.rds")
 ```
 
-#Read in the data:
+#Read in the data
 ```{r}
-d <- readRDS("C:/Users/Walt/OneDrive - The Pennsylvania State University/Projects/ASH/DVAL/Users/Walter/Preprocessing/Interim Data/EMA_and_baseline2.rds")
+d <- readRDS(file_path)
 ```
 
 #Centering
@@ -137,7 +153,6 @@ d %>%
 
 #Save current dataframe
 ```{r}
-saveRDS(d, 
-        file = "C:/Users/Walt/OneDrive - The Pennsylvania State University/Projects/ASH/DVAL/Users/Walter/Preprocessing/Interim Data/EMA_and_baseline4.rds")
+saveRDS(d, here("EMA_and_baseline4.rds"))
 ```
 

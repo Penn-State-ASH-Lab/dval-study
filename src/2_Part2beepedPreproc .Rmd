@@ -1,59 +1,27 @@
-#Load necessary packages
-```{r}
+---
+title: "2_Part2beeped Preprocessing"
+author: "WGD"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include = FALSE}
+# Load required packages
+library(here)
 library(dplyr)
 library(lubridate)
 library(janitor)
+
+# Define path to EMA Part 2 data
+part2_path <- here("data", "DVAL_EMA_Part2_beeped.csv")
 ```
 
-#Import data from CO-video coding procedure (Documentation forthcoming)
 ```{r}
-video_data_path <- "C:/Users/Walt/OneDrive - The Pennsylvania State University/Projects/ASH/DVAL/4. Derivative data/CO-video-data/DVAL_CO-video_data_part2.csv"
+# Import EMA data and define missing values
+part2beeped <- read.csv(part2_path, 
+                        na.strings = c("-99", "__NA__"), 
+                        stringsAsFactors = FALSE)
 
-video_data_part2 <- read.csv(video_data_path)
-```
-#Clean names
-```{r}
-video_data_part2_1 <-clean_names(video_data_part2)
-```
-
-#Assign correct variable types and create datetime variables
-```{r}
-video_data_part2_1 <- video_data_part2_1 %>%
-  # Convert *_date columns to Date
-  mutate(across(contains("_date"), ~ mdy(na_if(., "")))) %>%
-
-  # Convert *_time_recorded columns to hms only if they match HH:MM(:SS) pattern
-  mutate(across(contains("_time_recorded"), ~ {
-    cleaned <- na_if(., "")
-    cleaned[!grepl("^\\d{1,2}:\\d{2}(:\\d{2})?$", cleaned)] <- NA
-    hms(cleaned)
-  })) %>%
-
-  # Convert *_co_level columns to numeric
-  mutate(across(contains("_co_level"), ~ as.numeric(ifelse(grepl("^[0-9.]+$", .), ., NA)))) %>%
-
-  # Convert *_state_smoked columns to 1/0/NA
-  mutate(across(contains("_state_smoked"), ~ case_when(
-    tolower(.) == "yes" ~ 1,
-    tolower(.) == "no" ~ 0,
-    tolower(.) %in% c("dnr", "") | is.na(.) ~ NA_real_,
-    TRUE ~ NA_real_
-  ))) %>%
-
-  # Ensure 'notes' is character
-  mutate(notes = as.character(notes))
-```
-
-
-```{r}
-```
-
-
-
-#Import EMA data from "Part 2" of the study.
-```{r}
-part2beeped <- read.csv("/Users/Walt/OneDrive - The Pennsylvania State University/Projects/ASH/DVAL/4. Derivative data/Smartphone/Organize_EMA_data/DVAL_EMA_Part2_beeped.csv", 
-                        na = c("-99", "__NA__"), stringsAsFactors = FALSE)
 ```
 #Removal of variables with 100% missing data due to how the survey was programmed (Refer to DREAM manual.pdf for explanation): Milestone_3 - Milestone_10; Milestone_3_time - Milestone_10_time.
 ```{r}
@@ -272,9 +240,8 @@ glimpse(part2beeped_1)
 #View descriptive statistics (For each variable, examine % missing, mean, sd, frequencies by quartile, and histogram)
 skim(part2beeped_1)
 
-#Temporary until git established; Save as csv.
+# Save processed data to the /output directory
 ```{r}
-saveRDS(part2beeped_1, "C:\\Users\\Walt\\OneDrive - The Pennsylvania State University\\Projects\\ASH\\DVAL\\Users\\Walter\\Preprocessing\\Interim Data\\part2beeped_1.rds")
-
+saveRDS(part2beeped, here("output", "part2beeped.rds"))
 ```
 

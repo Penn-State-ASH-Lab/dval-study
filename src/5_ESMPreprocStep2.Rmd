@@ -1,19 +1,34 @@
-# This Rmarkdown is based on the step-by-step guidelines for preprocessing ESM data provided by Revol et al., (2024) via their website: https://preprocess.esmtools.com/, and contains code from or adapted from "Step 2: Design and Sampling scheme". 
+---
+title: "ESM Preprocessing Step 2"
+author: "DVAL Lab"
+date: "`r Sys.Date()`"
+output: html_document
+---
 
-#Load necessary packages
-```{r}
+# Overview
+
+This R Markdown file follows Step 2 from the Revol et al. (2024) ESM preprocessing guide:  
+[https://preprocess.esmtools.com](https://preprocess.esmtools.com)  
+It focuses on describing the design and sampling scheme of the ESM data.
+
+---
+
+```{r setup, include=FALSE}
+library(here)
 library(dplyr)
 library(esmtools)
 library(ggplot2)
 library(lubridate)
 library(ggpubr)
 library(ggTimeSeries)
+
+# Define path to the Step 1 output
+input_path <- here("output", "EMA_and_baseline1.rds")
 ```
 
 #Read in data
 ```{r}
-file_path <- "C:/Users/Walt/OneDrive - The Pennsylvania State University/Projects/ASH/DVAL/Users/Walter/Preprocessing/Interim Data/EMA_and_baseline1.rds"
-d <- readRDS(file_path)
+d <- readRDS(input_path)
 ```
 
 #From Revol et al, (2024), "Ensuring the coherence of the timestamps and the order of the observations is crucial for the analysis of EMA data. We will focus on this critical task, with specific objectives including examining both key timestamp variables (e.g., init_time, completion_time, study_day) and the 'session_id' variable."
@@ -80,7 +95,7 @@ d1 %>% filter(is.na(init_time)) %>%
 
 #Save updates to data
 ```{r}
-saveRDS(d, "C:\\Users\\Walt\\OneDrive - The Pennsylvania State University\\Projects\\ASH\\DVAL\\Users\\Walter\\Preprocessing\\Interim Data\\EMA_and_baseline2.rds")
+saveRDS(d, here("output", "EMA_and_baseline2.rds"))
 ```
 
 

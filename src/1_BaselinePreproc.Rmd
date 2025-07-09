@@ -1,19 +1,27 @@
-```{r}
-library(janitor)
+---
+title: "Baseline Preprocessing"
+author: "WGD"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include = FALSE}
+# Load required packages
+library(here)
+library(readxl)
 library(dplyr)
+library(janitor)
 library(ggplot2)
+
+# Define paths to input data
+Apath <- here("data", "QuestionnairesA.xlsx")
+Bpath <- here("data", "QuestionnairesB.xlsx")
 ```
-#This RMD contains code to merge baseline datasets and prepare the data for analysis. 
 
-#There are two files that contain data collected at the baseline session. One is called 'QuestionnairesA' and the other 'QuestionnairesB'. Read both datasets into the environment:
 ```{r}
-# Define the file paths for Excel files (.xlsx)
-Apath <- "C:/Users/Walt/OneDrive - The Pennsylvania State University/Projects/ASH/DVAL/3. Organized raw data/Qualtrics/1.Baseline-session/QuestionnairesA.xlsx"
-Bpath <- "C:/Users/Walt/OneDrive - The Pennsylvania State University/Projects/ASH/DVAL/3. Organized raw data/Qualtrics/1.Baseline-session/QuestionnairesB.xlsx"
-
-# Read Excel files into data frames A and B
-A <- readxl::read_excel(Apath)
-B <- readxl::read_excel(Bpath)
+# Read files into dataframes A and B
+A <- read_excel(Apath)
+B <- read_excel(Bpath)
 ```
 
 #Merge the baseline datasets
@@ -186,7 +194,7 @@ skim(baseline2)
 
 #Temporary until git established; Save as rds file.
 ```{r}
-saveRDS(baseline2, "C:\\Users\\Walt\\OneDrive - The Pennsylvania State University\\Projects\\ASH\\DVAL\\Users\\Walter\\Preprocessing\\Interim Data\\baseline2.rds")
+saveRDS(baseline2, here::here("output", "baseline2.rds"))
 ```
 
 #References
