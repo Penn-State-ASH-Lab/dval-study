@@ -1,23 +1,16 @@
-# DVAL Study
+# dval-study
 
-This repository contains the preprocessing and analysis workflow for the DVAL study (as of 7.9.25), including data import, cleaning, merging, and exploration according to Revol and colleauges' guidelines for preprocessing EMA data (Revol et. al, 2024).
+This repository contains preprocessing scripts and future analyses for the DVAL study, maintained by the [Penn State ASH Lab](https://github.com/Penn-State-ASH-Lab).
 
-The repository is intended as a shared workspace for DVAL Lab collaborators and includes all scripts, intermediate data, and documentation required to reproduce results from raw data through publication-ready output.
+---
 
 ## Getting Started
 
-### 1. Clone the Repository
-
-In RStudio:
-
-- Go to **File > New Project > Version Control > Git**
-- Paste this repository URL: `https://github.com/yourusername/DVAL_Walter.git`
-- Choose a local folder and click **Create Project**
-
-Or in terminal:
-
+### 1. Clone the repository
 ```bash
-git clone https://github.com/yourusername/dval-project.git
+git clone https://github.com/Penn-State-ASH-Lab/dval-study.git
+cd dval-study
+
 ```
 ### 2. Open the Project
 
