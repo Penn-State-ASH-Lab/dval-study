@@ -13,23 +13,21 @@ cd dval-study
 
 ```
 ### 2. Open the Project in RStudio
-
 In RStudio:
 
 - Open dval-study.Rproj 
 
 ### 3. Restore Required Packages
-
 In the RStudio console:
 
   install.packages("renv")  # Run only once
   renv::restore()           # Restores exact package versions used in the project
 
 ### 4. File Structure
-/src/ – R Markdown files (organized by step)
-/data/ – Raw data files (.csv, .xlsx)
-/output/ – Processed/intermediate data (.rds)
-/renv/ – Package/environment management (handled automatically)
+- `/src/` – R Markdown files (organized by step)  
+- `/data/` – Raw data files (.csv, .xlsx)  
+- `/output/` – Processed/intermediate data (.rds)  
+- `/renv/` – Package/environment management (handled automatically)
 
 
 ## Git Tips for Collaborators
