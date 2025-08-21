@@ -67,6 +67,7 @@ d <- merge(merged_ema, baseline, by = "participant_id")
 ```
 
 #The baseline and EMA data are now combined in the dataframe called 'd' and organized based on their variable type.
+
 #First Glimpse (Merged (Baseline and EMA) Data)
 View(d)
 #skim(d)

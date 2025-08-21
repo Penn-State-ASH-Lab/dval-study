@@ -183,7 +183,7 @@ baseline2 <- baseline2 %>%
   rename(total_household_income = total_houselhold_income)
 ```
 
-#The baseline data are now ready to be merged with the EMA data. Before merging the baseline and EMA data though, the EMA data must be prepared. Code for pre-merge actions on EMA data can be found in the following location: DVAL/Users/Walter/Preprocessing/PremergePreprocessing.
+#The baseline data are now ready to be merged with the EMA data. Before merging the baseline and EMA data though, the EMA data must be prepared. Code for pre-merge actions on EMA data are performed in the subsequent Rmds (2_Part2beepedPreproc, 3_Part6beepedPreproc).
 
 #First Glimpse for Baseline Data - included in this RMD as for a "quick and efficient overview of the dataset." The code is not "chunked" because it takes a long time to run and is optional.
 
