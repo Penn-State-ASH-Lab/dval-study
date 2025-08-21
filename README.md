@@ -12,11 +12,11 @@ git clone https://github.com/Penn-State-ASH-Lab/dval-study.git
 cd dval-study
 
 ```
-### 2. Open the Project
+### 2. Open the Project in RStudio
 
 In RStudio:
 
-- Open DVAL_Walter_Git.Rproj 
+- Open dval-study.Rproj 
 
 ### 3. Restore Required Packages
 
